@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<title>Blue Marble - Home </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+<style>
+  body { background:black; color:aliceblue}
+  .w3-lobster {
+  font-family: "Lobster", serif;
+  }
+html,body,h1{font-family:"Lato", sans-serif}
+.mySlides {display:none}
+.w3-tag, .fa {cursor:pointer}
+.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
+</style>
+
+  <% include ./partials/nav.ejs %>
+  <br>
+  <br>
+  
+  <div class="w3-container w3-padding-16">
+    <h1 class="w3-center w3-jumbo">
+       Blue-Marble Chat App
+    </h1>
+    
+    <ul class="w3-lobster w3-xxlarge w3-text-green w3-padding-32" style="list-style-type:disc;">
+  <li class="w3-padding w3-text-red">Chat with your friends in real time!</li>
+  <li class="w3-padding w3-text-blue">No mobile number, Email or any other personal information required!</li>
+  <li class="w3-padding w3-text-yellow">Post and share amazing things on the news feed!</li>
+  <li class="w3-padding w3-text-purple">No personal information needed! Fully secured!</li>
+</ul>
+    
+    <div class="w3-row w3-xlarge w3-text-pink">
+  <div class="w3-col s6  "><p class='w3-center'>
+    LOGIN!
+    </p><p>Just choose a cool username ,set a strong password and start chatting <button onclick='window.location.href="/login"'>
+    NOW!
+    </button></p></div>
+  <div class="w3-col s6">
+    <p class='w3-center'>
+    DEVELOPERS
+    </p>
+    <p><a href="https://mayurhiwale.glitch.me">@Mayur Hiwale </a> -- Backend Development | Socket.io | System Operator
+      <br> 
+      <a href="https://w3schools.com">@w3.css </a> -- HTML/CSS
+    </p>
+</div>
+   
+  </div>
+  
+  
+<script>
+// Accordion
+function myFunction(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-theme-d1";
+  } else { 
+    x.className = x.className.replace("w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+  }
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html> 

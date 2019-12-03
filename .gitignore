@@ -1,0 +1,25 @@
+# beta thing.
+src/auth.js
+plugins/Users.js
+databases
+
+# Testing API Wrappers that will be out when this thing
+# is an actual thing
+src/wrapper.rb
+src/wrapper.js
+src/wrapper.py
+
+# Test bots for them
+src/bot.js
+src/bot.rb
+src/bot.py
+
+# Pycache when python is used for testing.
+src/__pycache__
+
+# node_module
+node_modules
+
+
+# Lockfile
+package-lock.json

@@ -1,0 +1,104 @@
+
+ul {
+  width:35em;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
+
+
+
+.ps-popup {
+    position: absolute;
+    top: auto;
+    right: auto;
+    left: auto;
+    bottom: auto;
+    text-align: left;
+    background: #e1e8e8;
+    color: #000;
+    border: 1px solid #999;
+    padding: 2px 10px;
+    border-radius: 6px;
+    box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #ddd, 2px 2px 3px rgba(0,0,0,.2);
+    z-index: 20;
+}
+
+/* CSS Document */
+body {
+  background:aliceblue;
+    font:15px arial;
+    color: #222;
+    text-align:center;
+     }
+  
+form, p, span {
+    margin:0;
+    padding:0; }
+  
+input {
+  height:60px;
+  width:10000px;
+  font:15px arial; }
+  
+a {
+    color:#0000FF;
+    text-decoration:none; }
+  
+    a:hover { text-decoration:underline; }
+  
+.wrapper, #loginform {
+ 
+    padding-bottom:25px;
+    background:aliceblue;
+    width:100%;
+    border:1px solid #ACD8F0; }
+  
+#loginform { padding-top:18px; }
+  
+    #loginform p { margin: 5px; }
+  
+#chatbox {
+    text-align:left;
+    margin-bottom:25px;
+    padding:10px;
+    background:white;
+    height:45em;
+    width:100%;
+    border:1px solid #ACD8F0;
+    overflow:auto; }
+  
+#usermsg {
+    width:395px;
+    border:1px solid #ACD8F0; }
+  
+#submit { width: 60px; }
+  
+.error { color: #ff0000; }
+  
+#menu { padding:12.5px 25px 12.5px 25px; }
+  
+.welcome { float:left; }
+  
+.logout { float:right; }
+  
+.msgln { margin:0 0 2px 0; }

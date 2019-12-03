@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Lato"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link type="text/css" rel="stylesheet" href="/CSS/style.css" />
+    <script></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src='/youtube-player.js'></script>
+    <script>
+      
+
+     socket  = io()
+     
+      var io = socket;
+      let room;
+     
+
+      io.on("on_join", function(data) {
+        var user = document.getElementById("username").innerHTML;
+        room = user;
+        socket.emit("login", user);
+      });
+
+      
+
+      
+      
+      window.onbeforeunload = closingCode;
+      function closingCode() {
+        // do something...
+        alert("test");
+      }
+
+      function notifyMe(data) {
+        if (!("Notification" in window)) {
+          alert("This browser does not support desktop notification");
+        }
+
+        // Let's check whether notification permissions have already been granted
+        else if (Notification.permission == "granted") {
+          // If it's okay let's create a notification
+          var notification = new Notification("Hi there!");
+        }
+
+        // Otherwise, we need to ask the user for permission
+        else if (Notification.permission == "denied") {
+          Notification.requestPermission().then(function(permission) {
+            // If the user accepts, let's create a notification
+            if (permission === "granted") {
+              var notification = new Notification("Hi there!");
+            }
+          });
+        }
+      }
+
+      function onStart() {
+       
+        socket.emit("gethis");
+        var user = document.getElementById("username").innerHTML;
+         socket.emit('open_chat',user);
+        socket.emit('join',user)
+        if (Notification.permission != "granted")
+          Notification.requestPermission();
+
+        
+      }
+
+      socket.on("updateUserslist", function(data) {
+        //let arr = data.users;  
+        var ulist = document.getElementById("usersl");
+        
+        ulist.innerHTML = data;
+      });
+      
+      function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
+      
+      
+      
+      function sendMessage() {
+    
+        document.getElementById('typing').innerHTML = '';
+
+        var user = document.getElementById("username").innerHTML;
+        var color = document.getElementById("username").style.color;
+        var msg = escapeHtml(document.getElementById("usermsg").value);
+        let data = {
+          user: user,
+          msg: escapeHtml(msg)
+        };
+
+        document.getElementById("usermsg").value = "";
+        if (msg) {
+          let dateArray = Date(Date.now()).split(" ");
+          socket.emit("msg", {
+            message: msg,
+            user: user,
+            color: color,
+            date: dateArray[4]
+          });
+        }
+      }
+      socket.on("newmsg", function(data) {
+        
+        if (data && typeof data == "object" && !data.type) {
+          let msg = `<div>[${data.date}] <big><strong style='color:${data.color};'>${data.user}</strong></big>: ${data.message}</div>`;
+          socket.emit("addhis", msg);
+          document.getElementById("chatbox").innerHTML += msg;
+        } else if (data && data.type) {
+          let msg;
+          switch (data.type) {
+              
+            case "typing" : {
+              if(data.user == 'none') return document.getElementById('typing').innerHTML = '';
+              document.getElementById("typing").innerHTML = data.message;
+            }
+              break;
+              
+              case "popup" : {
+                   document.getElementById('popup').innerHTML = data.message;
+            }
+              break;
+              
+              
+            case "c":
+              {
+                msg = `<div>${data.message}</div>`;
+                socket.emit("addhis", msg);
+                document.getElementById("chatbox").innerHTML += msg;
+              }
+              break;
+              
+            case "join":
+              {
+                let data2 = {
+                  type: "add",
+                  user : data.user
+                }
+                socket.emit("userslist",data2);
+                msg = `<small><div>${data.message}</div></small>`;
+                
+                document.getElementById("chatbox").innerHTML += msg;
+              }
+              break;
+              
+            case "leave" : 
+              {
+                let data2 = {
+                  type: "remove",
+                  user : data.user
+                }
+                socket.emit("userslist",data2);
+                msg = `<small><div>${data.message}</div></small>`;
+                document.getElementById("chatbox").innerHTML += msg;
+              }
+              break;
+
+            case "pc":
+              {
+                msg = `<div><strong>${data.message}</strong></div>`;
+                //socket.emit('addhis',msg);
+                document.getElementById("chatbox").innerHTML += msg;
+              }
+              break;
+
+            case "error":
+              {
+                msg = `<div style='color:red;'><strong> [SERVER] ${data.message}</strong></div>`;
+                socket.emit("addhis", msg);
+                document.getElementById("chatbox").innerHTML += msg;
+              }
+              break;
+
+            case "perror":
+              {
+                msg = `<div style='color:red;'><strong> [SERVER] ${data.message}</strong></div>`;
+                //socket.emit('addhis',msg);
+
+                document.getElementById("chatbox").innerHTML += msg;
+              }
+              break;
+
+            case "eval": {
+              msg = `<div class="w3-white w3-text-green" style="border:1px solid grey;"><strong> ${data.message} </strong></div>`;
+              document.getElementById("chatbox").innerHTML += msg;
+            }
+              break;
+              
+              default : "";
+          }
+        } else {
+          document.getElementById("chatbox").innerHTML += data;
+        }
+      });
+      
+            function timeoutFunction() {
+        socket.emit("typing","none");
+            }
+      
+      
+      function typing(cond) {
+        if(cond == "none") return socket.emit('typing','none');
+        var user = document.getElementById("username").innerHTML;
+        socket.emit('typing',user);
+        clearTimeout(timeout);
+    timeout = setTimeout(alert('test'), 2000);
+      }
+      
+    
+      
+      function popUpp(ele,type) {
+        if(ele == 'close') return   document.getElementById('popup').innerHTML = '';
+
+        let data = {
+          type : type,
+          msg : ele.innerHTML ? ele.innerHTML : ele.value
+          
+        }
+        socket.emit("popup",data);
+      }
+      
+      
+      function pmSend(room) {
+        let msg = document.getElementById('msg').value;
+        let data = {
+          room : room,
+          msg : msg
+        }
+        socket.emit('join_chat',data);
+      
+      }
+      
+        socket.on('test',function(data) {
+          document.getElementById('msgs').innerHTML += data;
+        });
+      
+      function switchbox(){
+        document.getElementById('pm').style.display = 'block'
+        document.getElementById('chatroom').style.display = 'none'
+      }
+      
+      
+      function sendReq(to) {
+                var user = document.getElementById("username").innerHTML;
+        
+        let data = {
+          sender : user,
+          to: to
+        }
+        
+         socket.emit("msg", {
+            message: "Friend request sent to " + data.to,
+            user: user,
+            color: '',
+            date: '',
+          type: 'pc'
+          });
+       socket.emit("send_req",data);
+       
+      }
+      
+      
+      
+      socket.on("show_userinfo",function(user) {
+        let msg = `<div class="w3-padding-16" style='margin:10px;'> <p><b><a href="/users/${user.id}"> ${user.name} </a></b></p> <small><br> <i><p> Rank :  ${user.rank}  
+      <br> Color :  ${user.color}  <br>  Status :  ${user.status ? user.status : null} </i> </p> </small><br><button onclick='newChat(document.getElementById("username").innerHTML)'> Chat </button> 
+      <button onclick='sendReq("${user.name}")'> Send Request </button></div>`;
+      document.getElementById('popup').innerHTML = msg;
+      });
+      
+      
+      socket.on('request',function(by){
+        socket.emit("msg", {
+            message: `you have a new chat request from ${by.name}, do "/accept ${by.name}" to accept `,
+            user: by.id,
+            color: '',
+            date: '',
+          type: 'pc'
+          });
+                    });
+      
+      
+      
+      
+    </script>
+    
+  </head>
+  <body onload="onStart()" onclick="popUpp('close')">
+    <% include ./partials/nav.ejs %>
+
+    <div class="w3-container w3-border" style="padding:0px;margin:0px;width:100%;">
+     <!-- <button onclick='switchbox()'>
+        Switch
+      </button>-->
+      <div id='pm' style='display:none;'>
+        <div id='msgs'>
+          
+        </div>
+        <textarea id='msg'></textarea>
+        <button onclick='pmSend("mayur")'>
+          Send
+        </button>
+      </div>
+      <div id='chatroom' style="height:100%;padding:0px;">
+        
+      
+      <div
+        class="w3-cell w3-border w3-black"
+        style="width:20em;"
+        id="userslist"
+      >
+        <h3 class="w3-text-white" style="overflow:auto;">
+          Users
+          <hr />
+        </h3>
+        <h4>
+          <small>
+            <%- users -%>
+          </small>
+        </h4>
+      </div>
+      <div class="w3-cell" style="width:300em;">
+        <div class="wrapper">
+          <h2 class="w3-center w3-xlarge">
+            <b>Chatroom</b> -
+            <hr />
+          </h2>
+          <div id="menu">
+            <div class="ps-popup" id="popup"></div>
+            <p class="welcome" id="user">
+              Logged in as,
+              <b
+                ><span id="username" style="color:<%= color %>;"
+                  ><%= name %>
+                </span>
+              </b>
+            </p>
+            <p class="logout">
+              <a id="exit" href="/logout">Change Username</a>
+            </p>
+            <div style="clear:both"></div>
+          </div>
+
+          <div style='font-size:13px;' id="chatbox"></div><span id="typing"></span>
+
+          <textarea name="usermsg"  type="text"  onkeyup="typing()"  onkeydown = "typing('none'); if (event.keyCode == 13)
+                                                              document.getElementById('send').click()"  id="usermsg"></textarea>
+          <button id='send' onclick="sendMessage()">
+            Send
+          </button>
+        </div>
+      </div>
+        </div>
+    </div>
+
+    <script type="text/javascript"></script>
+  </body>
+
+  <script>
+    // Accordion
+    function myFunction(id) {
+      var x = document.getElementById(id);
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.previousElementSibling.className += " w3-theme-d1";
+      } else {
+        x.className = x.className.replace("w3-show", "");
+        x.previousElementSibling.className = x.previousElementSibling.className.replace(
+          " w3-theme-d1",
+          ""
+        );
+      }
+    }
+
+    // Used to toggle the menu on smaller screens when clicking on the menu button
+    function openNav() {
+      var x = document.getElementById("navDemo");
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+      } else {
+        x.className = x.className.replace(" w3-show", "");
+      }
+    }
+  </script>
+  </body>
+</html>

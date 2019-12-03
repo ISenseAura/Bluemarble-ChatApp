@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inbox</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="/CSS/inbox.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Lato"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    
+    <script src="/socket.io/socket.io.js"></script>
+<script>
+  
+     socket  = io()
+     
+      var io = socket;
+  
+  socket.on('req_err',function(data){
+   alert(data)
+  });
+  
+   socket.on('req_rec',function(from){
+     alert("test");
+showPop(from);
+    
+  });
+  
+   
+  
+  
+  function showPop(user) {
+  
+     let msg = `<div class="w3-padding-16" style='margin:10px;'> <p><b> you have recieved a chat request from ${user.name} <br>
+click the button given below or use "/accept [username]" to accept the request <br>
+      <button onclick='accReq("${user.name}")'> Send Request </button></div>`;
+      document.getElementByClassName('ps-popup').innerHTML = msg;
+  }
+  
+  socket.on('new_chat_success',function(data){
+    
+    if(!data.socketid) return alert('Sorry ,cant send chat request to an offline user');
+    let chat = `<a href="#" class="w3-bar-item w3-button w3-border" onclick='switchChat(${JSON.stringify(data)})'>${data.name}</a>`;
+     let chats = document.getElementById('chats');
+    chats.innerHTML += chat;
+    
+  });
+  
+   socket.on("show_popup",function(user) {
+        let msg = `<div class="w3-padding-16" style='margin:10px;'> <p><b> you have recieved a chat request from ${user.name} <br>
+click the button given below or use "/accept [username]" to accept the request <br>
+      <button onclick='accReq("${user.name}")'> Send Request </button></div>`;
+      document.getElementById('popup').innerHTML = msg;
+      });
+  
+  
+  function newChat() {
+     var me = document.getElementById("username").innerHTML;
+    let user = prompt('Enter username to whom you want to chat');
+    let chats = document.getElementById('chats');
+    socket.emit('new_chat',user,me);
+  }
+  
+   function popUpp(ele,type) {
+        if(ele == 'close') return   document.getElementById('popup').innerHTML = '';
+
+        let data = {
+          type : type,
+          msg : ele.innerHTML ? ele.innerHTML : ele
+          
+        }
+        socket.emit("popup",data);
+      }
+  
+  
+    </script>
+  </head>
+  <body>
+      <% include ./partials/nav.ejs %>
+ <div class="w3-sidebar w3-light-grey w3-bar-block w3-border w3-center" style="width:25%">
+  <h3 class="w3-bar-item "> <strong>Your Chats</strong></h3>
+   <div id='chats'>
+       <a href="#" class="w3-bar-item w3-button w3-border">Link 1</a>
+ <a href="#" class="w3-bar-item w3-button w3-border">Link 1</a>
+   </div>
+
+  <a href="#" class="w3-bar-item w3-button w3-border" onclick='newChat()'>Start New Chat</a>
+</div>
+
+<!-- Page Content -->
+<div style="margin-left:25%">
+
+<div class="w3-container w3-teal">
+  <h1>Chat Name</h1>
+  <div class="ps-popup" id="popup"></div>
+  <p class="welcome w3-right" id="user">
+              Logged in as,
+              <b
+                ><span id="username" style="color:red;"
+                  >p9</span>
+              </b>
+            </p>
+</div>
+
+<div class="w3-container">
+  
+<div style='font-size:14px;' id="chatbox"></div>
+  <div class='w3-bottom'>
+    <textarea name="usermsg" style='width:60%'  type="text"  onkeyup="typing()"  onkeydown = "typing('none'); if (event.keyCode == 13)
+                                                              document.getElementById('send').click()"  id="usermsg"></textarea>
+          <button id='send' onclick="sendMessage()">
+            Send
+          </button>
+  </div>
+  
+</div>
+
+</div>
+    
+ </body>
+</html>
