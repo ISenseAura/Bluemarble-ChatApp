@@ -3,7 +3,7 @@ const Tools = require("../plugins/Tools");
 const getEmbedUrl = require("video-embed");
 
 
- fun unescapeHtml(unsafe) {
+ funn unescapeHtml(unsafe) {
     return unsafe
          .replace(/&amp;/g, "&")
          .replace(/&lt;/g, "<")
