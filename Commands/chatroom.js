@@ -101,7 +101,20 @@ let cmds =  {
       return say(`[${data.date}] <strong style='color:${user.color}'> • </strong> ${user.name}  <i>${target} </i>`, 'c', data.date);
     },
   },
-  
+  shrug: {
+   command(user, target, data) {
+		target = target ? ' ' + target + ' ' : '';
+	 return say(target + '¯\\_(ツ)_/¯');
+	},
+  },
+	
+	tableflip: {
+  command(user, target, data) {
+		target = target ? ' ' + target + ' ' : '';
+		return say(target + '(╯°□°）╯︵ ┻━┻');
+	},
+ },
+	
   clearmsgs: {
     command(user, target, data) {
      delete db.data[Tools.getDate()] 
