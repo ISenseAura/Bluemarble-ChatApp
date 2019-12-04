@@ -362,9 +362,9 @@
 
           <div style='font-size:13px;' id="chatbox"></div><span id="typing"></span>
 <br>
-          <textarea name="usermsg"  type="text"  onkeyup="typing()"  onkeydown = "typing('none'); if (event.keyCode == 13)
+          <textarea class="input" name="usermsg"  type="text"  onkeyup="typing()"  onkeydown = "typing('none'); if (event.keyCode == 13)
                                                               document.getElementById('send').click()"  id="usermsg"></textarea>
-          <button id='send' onclick="sendMessage()" style="background:#0000ff;border:2px solid black;border-raius: 5px 30px">
+          <button id='send' onclick="sendMessage()" class="sendButton">
             Send
           </button>
         </div>
