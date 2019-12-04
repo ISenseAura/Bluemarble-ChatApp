@@ -61,6 +61,8 @@ function say(txt, type, time) {
       return data;
     }
 
+
+
 break;
 
 case '' :{
@@ -68,6 +70,7 @@ data.message = text;
 data.date = time;
 return data;
 }
+
   }
 }
 
@@ -109,7 +112,20 @@ let cmds =  {
       return say(`[${data.date}] <strong style='color:${user.color}'> • </strong> ${user.name}  <i>${target} </i>`, 'c', data.date);
     },
   },
-  
+  shrug: {
+   command(user, target, data) {
+		target = target ? ' ' + target + ' ' : '';
+	 return say(target + '¯\\_(ツ)_/¯','',data.date);
+	},
+  },
+	
+	tableflip: {
+  command(user, target, data) {
+		target = target ? ' ' + target + ' ' : '';
+		return say(target + '(╯°□°）╯︵ ┻━┻','',data.date);
+	},
+ },
+	
   clearmsgs: {
     command(user, target, data) {
      delete db.data[Tools.getDate()] 
