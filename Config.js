@@ -1,5 +1,5 @@
 module.exports = {
-  devs : ['p9','dedleve','mayur'],
+  devs : ['p9','dedleve','mayur', 'zeru'],
   groups : {
 	'\u203d': 0,
 	'!': 0,
