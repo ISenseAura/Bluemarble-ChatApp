@@ -66,7 +66,7 @@ function say(txt, type, time, odata) {
 break;
 
 case '' :{
-odata.message = text;
+odata.message = txt;
 return odata;
 }
 
