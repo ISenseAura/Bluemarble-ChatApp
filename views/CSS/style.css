@@ -104,9 +104,9 @@ a {
 .msgln { margin:0 0 2px 0; }
 .sendButton {
   border: 2px solid black;
-  border-radius: 20px;
-  background: #0000ff;
-  width: 30px;
+  border-radius: 2px;
+  background: yellow;
+  width: 80px;
 }
 .input {
   border: 2px solid black;
