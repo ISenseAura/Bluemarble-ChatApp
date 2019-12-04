@@ -199,8 +199,9 @@ let cmds =  {
   displayimage: "showimage",
   showimage: {
     command(user, target, data) {
-      if (!target.endsWith(".png") && !target.endsWith(".gif") && !target.endsWith(".jpg" || !target)) return say("Make sure your image ends in .png, .jpg or .gif","perror",data.date)
-      let msg = `<div style="border:1px solid black;height:30%;width:50%;"> Image shown from by ${user.name} <br> <img src="${target}"> </div>`;
+      let ops = target.split(',');
+      if (!ops[0].endsWith(".png") && !ops[0].endsWith(".gif") && !ops[0].endsWith(".jpg" || !target)) return say("Make sure your image ends in .png, .jpg or .gif","perror",data.date)
+      let msg = `<div style="border:1px solid black;height:30%;width:100%;"> Image shown from by ${user.name} <br> <img src="${ops[0]}" width="${ops[1]}" height="${ops[1]}"> </div>`;
       msg = unescapeHtml(msg);
       return say(msg,'c',data.date);
     },
