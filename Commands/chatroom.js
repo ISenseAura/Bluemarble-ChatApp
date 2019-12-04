@@ -60,6 +60,9 @@ function say(txt, type, time) {
       data.date = time;
       return data;
     }
+
+
+
   }
 }
 
@@ -104,14 +107,14 @@ let cmds =  {
   shrug: {
    command(user, target, data) {
 		target = target ? ' ' + target + ' ' : '';
-	 return say(target + '¯\\_(ツ)_/¯');
+	 return say(target + '¯\\_(ツ)_/¯','',data.date);
 	},
   },
 	
 	tableflip: {
   command(user, target, data) {
 		target = target ? ' ' + target + ' ' : '';
-		return say(target + '(╯°□°）╯︵ ┻━┻');
+		return say(target + '(╯°□°）╯︵ ┻━┻','',data.date);
 	},
  },
 	
