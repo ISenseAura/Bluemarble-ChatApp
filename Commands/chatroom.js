@@ -60,6 +60,14 @@ function say(txt, type, time) {
       data.date = time;
       return data;
     }
+
+break;
+
+case '' :{
+data.message = text;
+data.date = time;
+return data;
+}
   }
 }
 
