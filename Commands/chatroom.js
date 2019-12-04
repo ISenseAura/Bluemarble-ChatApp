@@ -231,11 +231,51 @@ setTimeout(unMute,5000);
 },
 },
   
+    tl : 'todolist',
+  tasks : 'todolist',
   todolist : {
     command(user, target, data) {
+      let options = target.trim().split(',');
+     if(!Tools.data['todolist']) Tools.data['todolist'] = {};
+      let list = Users.data['todolist'];
+      let items = Object.keys(list);
       
+      switch(options[0]) {
+        case 'add' : {
+          Users.data['todolist'][options[1]] = {};
+          Users.exportDatabase('todolist')
+          return say(user.name +  " added a new task -- " + options[1],'c',data.date,data)
+        } 
+          break;
+          
+        case 'edit' : {
+          Users.data['todolist'][options[1]].status = options[2]
+         Users.exportDatabase('todolist')
+
+          return say(user.name + " edited the task -- " + options[1],'c',data.date,data);
+        }
+          break;
+          
+        case 'remove' : {
+          delete list[options[1]]
+          Users.exportDatabase('todolist')     
+          return say(user.name + " removed the task -- " + options[1],'c',data.date,data);
+        }
+          break;
+          
+          default : {
+            let msg = '';
+            for(let i = 0;i < items.length;i++) {
+              msg += `<b><ins> ${items[i]} </ins> </b> ---- <i> ${list[items[i]].status} </i> <br>`
+            }
+            return say("<strong> <b> Todolist </b> </strong> <br> <br>" +msg ,'c',data.date,data)
     }
+      }
+    },
+    perms : 'Driver',
+    help : "/todolist add|edit|remove,[task name],[task status]"
   },
+  
   
   
   
