@@ -72,7 +72,7 @@ class MessageParser {
         }
         break;
 
-      case "Mod":
+      case "Moderator":
         {
           data.user = '<span style="color:grey;">@</span>' + data.user;
           return data;
