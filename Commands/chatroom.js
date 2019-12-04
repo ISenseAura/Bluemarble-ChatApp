@@ -249,7 +249,8 @@ setTimeout(unMute,5000);
           break;
           
         case 'edit' : {
-          Users.data['todolist'][options[1]].status = options[2]
+                  Users.data['todolist'][options[1]].status = options[2] + `[${user.name}]`;
+  
          Users.exportDatabase('todolist')
 
           return say(user.name + " edited the task -- " + options[1],'c',data.date,data);
