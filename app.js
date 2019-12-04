@@ -150,6 +150,8 @@ io.on("connection", function(socket) {
   socket.on("disconnect", function() {
     console.log(socket.username);
     let user = db.getBySock(socket.id);
+    if(socket.username == undefined) return;
+
     let data = {
       type: "leave",
       message: socket.username + " left D:",
