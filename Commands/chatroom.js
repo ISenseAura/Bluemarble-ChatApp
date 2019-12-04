@@ -63,6 +63,14 @@ function say(txt, type, time) {
 
 
 
+break;
+
+case '' :{
+data.message = text;
+data.date = time;
+return data;
+}
+
   }
 }
 
