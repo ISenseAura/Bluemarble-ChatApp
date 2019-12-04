@@ -19,7 +19,7 @@ function popup(msg,data) {
   return data;
 }
 
-function say(txt, type, time) {
+function say(txt, type, time, odata) {
   let data = {};
   switch (type) {
     case "error":
@@ -66,9 +66,8 @@ function say(txt, type, time) {
 break;
 
 case '' :{
-data.message = text;
-data.date = time;
-return data;
+odata.message = text;
+return odata;
 }
 
   }
@@ -115,14 +114,14 @@ let cmds =  {
   shrug: {
    command(user, target, data) {
 		target = target ? ' ' + target + ' ' : '';
-	 return say(target + '¯\\_(ツ)_/¯','',data.date);
+	 return say(target + '¯\\_(ツ)_/¯','',data.date,data);
 	},
   },
 	
 	tableflip: {
   command(user, target, data) {
 		target = target ? ' ' + target + ' ' : '';
-		return say(target + '(╯°□°）╯︵ ┻━┻','',data.date);
+		return say(target + '(╯°□°）╯︵ ┻━┻','',data.date,data);
 	},
  },
 	
