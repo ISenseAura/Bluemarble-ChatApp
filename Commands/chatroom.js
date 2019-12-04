@@ -222,7 +222,7 @@ let cmds =  {
     command(user, target, data) {
     let targetUser = db.get(db.toId(target));
 if(!targetUser) return say("User not found",'perror',data.date);
-  targetUser.punishments = "mute";
+  targetUser.mute()
       function unMute() {
         user.punishments = '';
       }
