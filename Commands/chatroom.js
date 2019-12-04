@@ -194,7 +194,18 @@ let cmds =  {
     },
     perms : 'Moderator'
   },
-  
+
+  displayimage: "showimage",
+  showimage: {
+    command(user, target, data) {
+      if (!target.endsWith(".png") && !target.endsWith(".gif") && !target.endsWith(".jpg" || !target)) return say("Make sure your image ends in .png, .jpg or .gif","perror",data.date)
+      let msg = `<div style="border:1px solid black;height:30%;width:99%;"> Image shown from by ${user.name} <br> <img src="${target}"> </div>`;
+      msg = unescapeHtml(msg);
+      return say(msg,'c',data.date);
+    },
+    perms : 'Driver'
+  },
+
   showvideo : {
     command(user, target, data) {
      // getEmbedUrl(target));
