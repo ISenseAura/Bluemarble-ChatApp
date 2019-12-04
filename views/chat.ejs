@@ -143,7 +143,7 @@
               
             case "c":
               {
-                msg = `<div>${data.message}</div>`;
+                msg = `<div class="w3-border">${data.message}</div>`;
                 socket.emit("addhis", msg);
                 document.getElementById("chatbox").innerHTML += msg;
               }
