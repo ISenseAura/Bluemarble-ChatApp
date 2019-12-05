@@ -53,6 +53,17 @@ function say(txt, type, time, odata) {
         return data;
       }
       break;
+      
+        case "pc":
+      {
+        data.user = "none";
+        data.type = "pc";
+        data.color = "black";
+        data.message = txt;
+        data.date = time;
+        return data;
+      }
+      break;
 
     case "eval": {
       data.user = "Server";
@@ -188,37 +199,40 @@ let cmds =  {
   
   html : "htmlbox",
   htmlbox : {
-    command(user, target, data) {
+    command(user, target, data, type) {
       let msg = `<div style="border:1px solid black;height:30%;width:99%;"> HTML by ${user.name} <br> ${target} </div>`;
       msg = unescapeHtml(msg);
-      return say(msg,'c',data.date);
+      if(type =='global') return say(msg,'c',data.date);
+      return say(msg,'pc',data.date);
     },
     perms : 'Moderator'
   },
 
   displayimage: "showimage",
   showimage: {
-    command(user, target, data) {
+    command(user, target, data, type) {
       let ops = target.split(',');
       if (!ops[0].endsWith(".png") && !ops[0].endsWith(".gif") && !ops[0].endsWith(".jpg" || !target)) return say("Make sure your image ends in .png, .jpg or .gif","perror",data.date)
       let msg = `<div style="border:1px solid black;height:30%;width:100%;"> Image shown from by ${user.name} <br> <img src="${ops[0]}" width="${ops[1]}" height="${ops[1]}"> </div>`;
       msg = unescapeHtml(msg);
-      return say(msg,'c',data.date);
+      if(type =='global') return say(msg,'c',data.date);
+      return say(msg,'pc',data.date);
     },
     perms : 'Driver'
   },
 
   showvideo : {
-    command(user, target, data) {
+    command(user, target, data, type) {
      // getEmbedUrl(target));
       let msg = `<div style="border:1px solid black;"><button onclick="document.getElementById(${data.date}).style.display='none';">Close</button><button onclick="document.getElementById(${data.date}).style.display = 'block'">Show</button><summary>Youtube Video</summary><span id="${data.date}">${getEmbedUrl(target)} </span><br> Requested by ${user.name} </div>`;
-      return say(msg,'c',data.date);
+      if(type =='global') return say(msg,'c',data.date);
+      return say(msg,'pc',data.date);
     },
     perms : 'Driver'
   },
   
   commands: {
-    command(user, target, data) {
+    command(user, target, data, type) {
       let cmds2 = Object.keys(cmds);
       let list = '';
       for(let i = 0;i < cmds2.length;i++) {
@@ -226,7 +240,8 @@ let cmds =  {
         list += cmds2[i] + ', ';
       } 
     
-      return say(list,'c',data.date);
+      if(type =='global') return say(msg,'c',data.date);
+      return say(msg,'pc',data.date);
       
     }
   },
@@ -291,7 +306,7 @@ setTimeout(unMute,5000);
   },
   
    uptime: {
-   command(user, target, data){
+   command(user, target, data, type){
 		let uptime = process.uptime();
 		let uptimeText;
 		if (uptime > 24 * 60 * 60) {
@@ -302,8 +317,9 @@ setTimeout(unMute,5000);
 		} else {
 			uptimeText = Tools.toDurationString(uptime * 1000);
 			}
-			
-			return say(uptimeText,'c',data.date,data);
+			if(type =='global') return say("<b> Uptime : </b>" + uptimeText,'c',data.date);
+      return say("<b> Uptime : </b>" + uptimeText,'pc',data.date);
+		
 			}
 			},
   
