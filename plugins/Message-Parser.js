@@ -58,33 +58,33 @@ if(!user) return data;
     
     switch(rank) {
       case 'Admin' : {
-        data.user =  '<span style="color:grey;">~</span>' + data.user;
+        data.user =  '<span style="color:grey;"><i>~</span><b>' + data.user + '</b></i>';
         return data;
       }
         
         break;
         
       case 'Voice' : {
-      data.user =  '<span style="color:grey;">+</span>' + data.user;
+      data.user =  '<span style="color:grey;">+</span><b>' + data.user + '</b>;
         return data;
       }
         break;
         
       case 'Driver' : {
-         data.user =  '<span style="color:grey;">%</span>' + data.user;
+         data.user =  '<span style="color:grey;">%</span><b>' + data.user + '</b>';
       return data;
       }
         break;
         
       case 'Moderator' : {
-      data.user =  '<span style="color:grey;">@</span>' + data.user;
+      data.user =  '<span style="color:grey;">@</span><b>' + data.user + '</b>;
      return data;
       }  
         
         break;
       
       case 'Leader' : {
-        data.user =  '<b style="color:grey;">&</b>' + data.user;
+        data.user =  '<b style="color:grey;"><i>&</b><b>' + data.user + '</b></i>;
         return data;
       }
         break;
