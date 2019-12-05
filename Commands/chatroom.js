@@ -290,6 +290,23 @@ setTimeout(unMute,5000);
     help : "/todolist add|edit|remove,[task name],[task status]"
   },
   
+   uptime: {
+   command(user, target, data){
+		let uptime = process.uptime();
+		let uptimeText;
+		if (uptime > 24 * 60 * 60) {
+			let uptimeDays = Math.floor(uptime / (24 * 60 * 60));
+			uptimeText = uptimeDays + " " + (uptimeDays === 1 ? "day" : "days");
+			let uptimeHours = Math.floor(uptime / (60 * 60)) - uptimeDays * 24;
+			if (uptimeHours) uptimeText += ", " + uptimeHours + " " + (uptimeHours === 1 ? "hour" : "hours");
+		} else {
+			uptimeText = Tools.toDurationString(uptime * 1000);
+			}
+			
+			return say(uptimeText,'c',data.date,data);
+			}
+			},
+  
   
   
   
