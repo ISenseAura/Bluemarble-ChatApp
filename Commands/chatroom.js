@@ -240,8 +240,8 @@ let cmds =  {
         list += cmds2[i] + ', ';
       } 
     
-      if(type =='global') return say(msg,'c',data.date);
-      return say(msg,'pc',data.date);
+      if(type =='global') return say(list,'c',data.date);
+      return say(list,'pc',data.date);
       
     }
   },
