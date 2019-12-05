@@ -103,10 +103,14 @@ a {
   
 .msgln { margin:0 0 2px 0; }
 .sendButton {
-  border: 2px solid black;
-  border-radius: 2px;
-  background: yellow;
-  width: 80px;
+   background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 .input {
   border: 2px solid black;
