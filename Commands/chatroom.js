@@ -127,8 +127,8 @@ let cmds =  {
 intro: {
     command(user, target, data, type) {
 
-      if(type == "global") return say(`<div class="w3-border"> <strong style='color:${user.color}'><center>Introduction to Blue Marble</center></strong><br>Blue Marble is a Chat Application created using WS, Node.js and Socket.io. We have an in-built ranks section and many commands (some which only certain ranks have access to). Currently we're still in the development phase as it's quite a new app, and we're working on more features all the time. Check out our open source  <a href="https://github.com/Zerapium/Bluemarble-ChatApp">here</a>, and maybe submit a Pull Request or two if you're a developer. Check out our credits with /credits and our rules with /rules. Have fun! </div>`, 'c', data.date);
-   return say(`<div class="w3-border"> <strong style='color:${user.color}'><center>Introduction to Blue Marble</center></strong><br>Blue Marble is a Chat Application created using WS, Node.js and Socket.io. We have an in-built ranks section and many commands (some which only certain ranks have access to). Currently we're still in the development phase as it's quite a new app, and we're working on more features all the time. Check out our open source  <a href="https://github.com/Zerapium/Bluemarble-ChatApp">here</a>, and maybe submit a Pull Request or two if you're a developer. Check out our credits with /credits and our rules with /rules. Have fun!</div>`, 'pc', data.date,data); 
+      if(type == "global") return say(`<div> <strong style='color:${user.color}'><center>Introduction to Blue Marble</center></strong><br>Blue Marble is a Chat Application created using WS, Node.js and Socket.io. We have an in-built ranks section and many commands (some which only certain ranks have access to). Currently we're still in the development phase as it's quite a new app, and we're working on more features all the time. Check out our open source  <a href="https://github.com/Zerapium/Bluemarble-ChatApp">here</a>, and maybe submit a Pull Request or two if you're a developer. Check out our credits with /credits and our rules with /rules. Have fun! </div>`, 'c', data.date);
+   return say(`<div> <strong style='color:${user.color}'><center>Introduction to Blue Marble</center></strong><br>Blue Marble is a Chat Application created using WS, Node.js and Socket.io. We have an in-built ranks section and many commands (some which only certain ranks have access to). Currently we're still in the development phase as it's quite a new app, and we're working on more features all the time. Check out our open source  <a href="https://github.com/Zerapium/Bluemarble-ChatApp">here</a>, and maybe submit a Pull Request or two if you're a developer. Check out our credits with /credits and our rules with /rules. Have fun!</div>`, 'pc', data.date,data); 
 
  },
   },
@@ -308,9 +308,9 @@ setTimeout(unMute,1000 * 60 * 7);
             for(let i = 0;i < items.length;i++) {
               msg += `<b><ins> ${items[i]} </ins> </b> ---- <i> ${list[items[i]].status} </i> <br>`
             }
-            if(type == "global") return say("<strong> <b> Todolist </b> </strong> <br> <br>" +msg ,'pc',data.date,data)
+            if(type == "global") return say("<strong> <b> Todolist </b> </strong> <br> <br>" +msg ,'c',data.date,data)
 
-            return say("<strong> <b> Todolist </b> </strong> <br> <br>" +msg ,'c',data.date,data)
+            return say("<strong> <b> Todolist </b> </strong> <br> <br>" +msg ,'pc',data.date,data)
     }
       }
     },
