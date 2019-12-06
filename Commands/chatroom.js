@@ -123,11 +123,16 @@ let cmds =  {
       return say(`[${data.date}] <strong style='color:${user.color}'> • </strong> ${user.name}  <i>${target} </i>`, 'c', data.date);
     },
   },
-	intro: {
-    command(user, target, data) {
-      return say(`[${data.date}] <strong style='color:${user.color}'><center>Introduction to Blue Marble</center></strong><br>Blue Marble is a Chat Application created using WS, Node.js and Socket.io. We have an in-built ranks section and many commands (some which only certain ranks have access to). Currently we're still in the development phase as it's quite a new app, and we're working on more features all the time. Check out our open source  <a href="https://github.com/Zerapium/Bluemarble-ChatApp">here</a>, and maybe submit a Pull Request or two if you're a developer. Check out our credits with /credits and our rules with /rules. Have fun!`, 'c', data.date);
-    },
+
+intro: {
+    command(user, target, data, type) {
+
+      if(type == "global") return say(`[${data.date}] <strong style='color:${user.color}'><center>Introduction to Blue Marble</center></strong><br>Blue Marble is a Chat Application created using WS, Node.js and Socket.io. We have an in-built ranks section and many commands (some which only certain ranks have access to). Currently we're still in the development phase as it's quite a new app, and we're working on more features all the time. Check out our open source  <a href="https://github.com/Zerapium/Bluemarble-ChatApp">here</a>, and maybe submit a Pull Request or two if you're a developer. Check out our credits with /credits and our rules with /rules. Have fun!`, 'c', data.date);
+   returnsay(`[${data.date}] <strong style='color:${user.color}'><center>Introduction to Blue Marble</center></strong><br>Blue Marble is a Chat Application created using WS, Node.js and Socket.io. We have an in-built ranks section and many commands (some which only certain ranks have access to). Currently we're still in the development phase as it's quite a new app, and we're working on more features all the time. Check out our open source  <a href="https://github.com/Zerapium/Bluemarble-ChatApp">here</a>, and maybe submit a Pull Request or two if you're a developer. Check out our credits with /credits and our rules with /rules. Have fun!`, 'pc', data.date,data); 
+
+ },
   },
+
   shrug: {
    command(user, target, data) {
 		target = target ? ' ' + target + ' ' : '';
