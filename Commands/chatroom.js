@@ -19,7 +19,7 @@ function popup(msg,data) {
   return data;
 }
 
-function say(txt, type, time, odata) {
+function say(txt, type, time, odata,) {
   let data = {};
   switch (type) {
     case "error":
@@ -272,7 +272,7 @@ setTimeout(unMute,5000);
     tl : 'todolist',
   tasks : 'todolist',
   todolist : {
-    command(user, target, data) {
+    command(user, target, data, type) {
       let options = target.trim().split(',');
      if(!Tools.data['todolist']) Tools.data['todolist'] = {};
       let list = Users.data['todolist'];
@@ -307,6 +307,8 @@ setTimeout(unMute,5000);
             for(let i = 0;i < items.length;i++) {
               msg += `<b><ins> ${items[i]} </ins> </b> ---- <i> ${list[items[i]].status} </i> <br>`
             }
+            if(type == "global") return say("<strong> <b> Todolist </b> </strong> <br> <br>" +msg ,'pc',data.date,data)
+
             return say("<strong> <b> Todolist </b> </strong> <br> <br>" +msg ,'c',data.date,data)
     }
       }
