@@ -143,7 +143,7 @@
               
             case "c":
               {
-                msg = `<div class="w3-border">${data.message}</div>`;
+                msg = `<div class="w3-border w3-padding" style="padding: 2px;">${data.message}</div>`;
                 socket.emit("addhis", msg);
                 document.getElementById("chatbox").innerHTML += msg;
               }
@@ -176,7 +176,7 @@
 
             case "pc":
               {
-                msg = `<div style="w3-border">${data.message}</div>`;
+                msg = `<div class="w3-padding w3-border">${data.message}</div>`;
                 //socket.emit('addhis',msg);
                 document.getElementById("chatbox").innerHTML += msg;
               }
@@ -184,7 +184,7 @@
 
             case "error":
               {
-                msg = `<div style='color:red;'><strong> [SERVER] ${data.message}</strong></div>`;
+                msg = `<div class="w3-padding w3-border" style='color:red;'><strong> [SERVER] ${data.message}</strong></div>`;
                 socket.emit("addhis", msg);
                 document.getElementById("chatbox").innerHTML += msg;
               }
@@ -192,7 +192,7 @@
 
             case "perror":
               {
-                msg = `<div style='color:red;'><strong> [SERVER] ${data.message}</strong></div>`;
+                msg = `<div class="w3-padding w3-border" style='color:red;'><strong> [SERVER] ${data.message}</strong></div>`;
                 //socket.emit('addhis',msg);
 
                 document.getElementById("chatbox").innerHTML += msg;
@@ -200,7 +200,7 @@
               break;
 
             case "eval": {
-              msg = `<div class="w3-white w3-text-green" style="border:1px solid grey;"><strong> ${data.message} </strong></div>`;
+              msg = `<div class="w3-white w3-text-green w3-padding" style="border:1px solid grey;"><strong> ${data.message} </strong></div>`;
               document.getElementById("chatbox").innerHTML += msg;
             }
               break;
