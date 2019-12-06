@@ -22,10 +22,10 @@ class MessageParser {
   
   parsePunishments(data) {
     
-  let user = Users.get(Users.toId(data.user));
+  let user = Users.get(Users.toId(data.ouser ? data.ouser : data.user));
 if(!user) return data;
     let puns = user.punishments;
-    
+    console.log(puns);
   
     
     switch(puns) {
@@ -54,10 +54,11 @@ if(!user) return data;
     if(!Users.get(Users.toId(data.user))) return;
     let user = Users.get(Users.toId(data.user));
     let rank = user.rank;
- 
+ data.ouser = data.user;
     
     switch(rank) {
       case 'Admin' : {
+        data.ouser = data.user;
         data.user =  '<span style="color:grey;">~</span>' + data.user;
         return data;
       }
@@ -65,18 +66,21 @@ if(!user) return data;
         break;
         
       case 'Voice' : {
+        data.ouser = data.user;
       data.user =  '<span style="color:grey;">+</span>' + data.user;
         return data;
       }
         break;
         
       case 'Driver' : {
+        data.ouser = data.user;
          data.user =  '<span style="color:grey;">%</span>' + data.user;
       return data;
       }
         break;
         
       case 'Moderator' : {
+        data.ouser = data.user;
       data.user =  '<span style="color:grey;">@</span>' + data.user;
      return data;
       }  
@@ -84,6 +88,7 @@ if(!user) return data;
         break;
       
       case 'Leader' : {
+        data.ouser = data.user
         data.user =  '<b style="color:grey;">&</b>' + data.user;
         return data;
       }
