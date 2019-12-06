@@ -326,10 +326,10 @@ setTimeout(unMute,5000);
   
   credits : {
     command(user, target, data, type) {
-      let msg = `<div class="w3-margin w3-padding-16"><h2> Server Credits </h2><br>
-<strong> P9 </strong> --- Owner | Backend Development | Socket.io | Frontend Development. <br> </br>
-<strong> Zeru </strong> --- Server Driver | Frontend Development | Commands Writer. <br> <br>
-<strong> Delta </strong> --- Server Moderator | Frontend Development. <br><br> </div>
+      let msg = `<div class="w3-margin w3-padding-16"><h2><strong> Server Credits</strong> </h2><br>
+<strong> P9 </strong> --- Owner[~]| Backend Development | Socket.io | Frontend Development. <br> </br>
+<strong> Zeru </strong> --- Server Driver[%] | Frontend Development | Commands Writer. <br> <br>
+<strong> Delta </strong> --- Server Moderator[@] | Frontend Development. <br><br> </div>
 `;
       return popup(msg,data);
       
