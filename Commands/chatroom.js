@@ -259,12 +259,13 @@ intro: {
   mute : {
     command(user, target, data) {
     let targetUser = db.get(db.toId(target));
-if(!targetUser) return say("User not found",'perror',data.date);
+if(!(typeof targetUser == "object")) return say("User not found",'perror',data.date);
   targetUser.mute()
       function unMute() {
-        user.punishments = '';
+       targetUser.punishments = '';
+        db.exportDatabase('users');
       }
-setTimeout(unMute,5000);
+setTimeout(unMute,1000 * 60 * 7);
       return say(targetUser.name + " was muted for 7 minutes by " + user.name, 'c',data.date);
 },
 },
