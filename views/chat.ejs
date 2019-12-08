@@ -155,9 +155,11 @@
                   type: "add",
                   user : data.user
                 }
-                socket.emit("userslist",data2);
-                msg = `<small><div>${data.message}</div></small>`;
                 
+                
+                msg = `<small><div>${data.message}</div></small>`;
+               socket.emit("addhis",msg);
+
                 document.getElementById("chatbox").innerHTML += msg;
               }
               break;
@@ -168,8 +170,10 @@
                   type: "remove",
                   user : data.user
                 }
-                socket.emit("userslist",data2);
+                
                 msg = `<small><div>${data.message}</div></small>`;
+               socket.emit("addhis",msg);
+
                 document.getElementById("chatbox").innerHTML += msg;
               }
               break;
