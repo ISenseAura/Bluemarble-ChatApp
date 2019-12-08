@@ -20,6 +20,7 @@ Run ``node app.js`` in the console to start the server
 * [@Zerapium](https://mayurhiwale.glitch.me) *Owner | Full Stack Development.*
 * [@SSlayer9](https://github.com/SSlayer9) *Co Owner | Full Stack Development.*
 * [@DeltaCoderr](https://github.com/DeltaCoderr) *Developer| FrontEnd Development.*
+* [@ShivayLamba](https://github.com/shivaylamba) *Developer*
 
 
 
