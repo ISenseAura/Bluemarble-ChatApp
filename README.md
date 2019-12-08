@@ -17,13 +17,20 @@ Run ``node app.js`` in the console to start the server
 
 ## Contributing
 
-* [@Zerapium](https://mayurhiwale.glitch.me) *Owner | Backend Development.*
+* [@Zerapium](https://mayurhiwale.glitch.me) *Owner | Full Stack Development.*
+* [@SSlayer9](https://github.com/SSlayer9) *Co Owner | Full Stack Development.*
+* [@DeltaCoderr](https://github.com/DeltaCoderr) *Developer| FrontEnd Development.*
+
+
+
 * [W3.CSS](https://w3school.com) *CSS*
 
 
 ## Authors
 
 * **Mayur Hiwale** - *Owner* - [Zerapium](https://github.com/Zerapium)
+* **SSlayer9** - *Owner* - [SSlayer9](https://github.com/SSlayer9)
+
 
 
 ## License
