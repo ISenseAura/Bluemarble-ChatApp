@@ -162,6 +162,7 @@
                socket.emit("addhis",msg);
 
                 document.getElementById("chatbox").innerHTML += msg;
+                socket.emit("updateUL", data.user)
               }
               break;
               
