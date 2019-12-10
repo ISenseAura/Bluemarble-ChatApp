@@ -78,11 +78,12 @@
         
       }
 
-      socket.on("updateUserslist", function(data) {
+      socket.on("updateUL", function(data) {
         //let arr = data.users;  
-        var ulist = document.getElementById("usersl");
         
-        ulist.innerHTML = data;
+        var ulist = document.getElementById("UL");
+        
+        ulist.innerHTML = data.join('<br>');;
       });
       
       function escapeHtml(unsafe) {
@@ -337,8 +338,8 @@
           <hr />
         </h3>
         <h4 style="height:34em;overflow:auto;">
-          <small>
-            <%- users -%>
+          <small id="UL">
+            
           </small>
         </h4>
       </div>
