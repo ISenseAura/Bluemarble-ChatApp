@@ -79,11 +79,9 @@
       }
 
       socket.on("updateUL", function(data) {
-        //let arr = data.users;  
-        
-        var ulist = document.getElementById("UL");
-        
-        ulist.innerHTML = data.join('<br>');;
+        //let arr = data.users; 
+      let ulist = document.getElementById('UL');
+        ulist.innerHTML = data;
       });
       
       function escapeHtml(unsafe) {
