@@ -90,6 +90,23 @@ io.on('connection', function(socket) {
     io.sockets.emit('on_join');
     });
   
+  
+  function updateUL(ulist) {
+    
+    let list = '';
+    for(let i = 0; i < ulist.length; i++) {
+      
+      if(ulist[i].length > 2) {
+       let user = Users.get(Tools.toId(ulist[i]));
+      list += `<b><a onclick="popUpp(this,'userinfo')" style='color:${user.color};'> ${user.name} </a> </b><br>`;
+
+      }
+    }
+    
+    io.sockets.emit('updateUL',list);
+  
+  }
+  
   socket.on('join', function(user) {
      if(!db.get(db.toId(user)).socketid) db.get(db.toId(user)).socketid  = socket.id;
     socket.username = user;
@@ -99,7 +116,8 @@ io.on('connection', function(socket) {
       user : user
     }
     userslist.push(user);
-    io.sockets.emit('updateUL',userslist);
+    updateUL(userslist);
+   // io.sockets.emit('updateUL',userslist);
     io.sockets.emit('newmsg',data);
     
   });
@@ -177,6 +195,9 @@ io.on('connection', function(socket) {
       message: socket.username + " left D:",
       user : socket.username
     }
+    userslist[userslist.indexOf(socket.username)] = '';
+    updateUL(userslist);
+   // io.sockets.emit("updateUL",userslist);
     io.sockets.emit("newmsg",data);
   //  if(typeof user == "object") console.log(user.name);
        console.log(socket.handshake.headers['x-forwarded-for'].split(',')[0]);
