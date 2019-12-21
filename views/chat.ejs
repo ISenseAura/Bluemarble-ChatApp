@@ -235,7 +235,7 @@
 
         let data = {
           type : type,
-          msg : ele.innerHTML ? ele.innerHTML : ele.value
+          msg : ele.innerHTML ? ele.innerHTML.split('</span>')[1] : ele.value
           
         }
         socket.emit("popup",data);
@@ -327,7 +327,7 @@
         
       
       <div
-        class="w3-cell w3-border w3-black"
+        class="w3-cell w3-border w3-black w3-padding"
         style="width:20em;overflow:auto;"
         id="userslist"
       >
