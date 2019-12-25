@@ -349,6 +349,12 @@ setTimeout(unMute,1000 * 60 * 7);
     },
   },
   
+	  avatar : {
+    command(user, target, data, type) {
+      user.setAvi(target);
+      return say(user.name +" Updated their avatar","c",data.date,data);
+    },
+  },
 
   
   
