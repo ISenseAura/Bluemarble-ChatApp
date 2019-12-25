@@ -284,9 +284,8 @@
       
       
       socket.on("show_userinfo",function(user) {
-        let msg = `<div class="w3-padding-16" style='margin:10px;'> <p><b><a href="/users/${user.id}"> ${user.name} </a></b></p> <small><br> <i><p> Rank :  ${user.rank}  
-      <br> Color :  ${user.color}  <br>  Status :  ${user.status ? user.status : null} </i> </p> </small><br><button onclick='newChat(document.getElementById("username").innerHTML)'> Chat </button> 
-      <button onclick='sendReq("${user.name}")'> Send Request </button></div>`;
+        let msg = `<div class="w3-padding-16" style='margin:10px;'> <img style='float:left;'  src='${user.avatar}' width='150' height='150'/> <div  style='float:right;' class='w3-padding'><p><b><a href="/users/${user.id}"> ${user.name} </a></b></p> <small><br> <i><p> Rank :  ${user.rank}  
+      <br> Color :  ${user.color}  <br>  Status :  ${user.status ? user.status : null} </i> </p> </small></div></div>`;
       document.getElementById('popup').innerHTML = msg;
       });
       
