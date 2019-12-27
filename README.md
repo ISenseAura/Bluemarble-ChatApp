@@ -18,7 +18,7 @@ Run ``node app.js`` in the console to start the server
 ## Contributing
 
 * [@Zerapium](https://mayurhiwale.glitch.me) *Owner | Full Stack Development.*
-* [@SSlayer9](https://github.com/SSlayer9) *Co Owner | Full Stack Development.*
+* [@SSlayer9](https://github.com/SSlayer9) *Developer | Full Stack Development.*
 * [@DeltaCoderr](https://github.com/DeltaCoderr) *Developer| FrontEnd Development.*
 * [@ShivayLamba](https://github.com/shivaylamba) *Developer*
 
@@ -30,7 +30,7 @@ Run ``node app.js`` in the console to start the server
 ## Authors
 
 * **Mayur Hiwale** - *Owner* - [Zerapium](https://github.com/Zerapium)
-* **SSlayer9** - *Owner* - [SSlayer9](https://github.com/SSlayer9)
+* **SSlayer9** - *Developer* - [SSlayer9](https://github.com/SSlayer9)
 
 
 
