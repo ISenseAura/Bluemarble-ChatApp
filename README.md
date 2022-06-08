@@ -2,7 +2,7 @@
 
 A Webserver example template having local database and login/register feature
 
-## Getting Started
+## Getting Started test
 
 Run ``node app.js`` in the console to start the server
 
